@@ -1,0 +1,7 @@
+document.querySelector()
+mark selectors like we do in CSS
+if you want to select a specific class
+it will look lik that
+document.querySelector('.class')
+if it is an id
+document.querySelector('#id')
