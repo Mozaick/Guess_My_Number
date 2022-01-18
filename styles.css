@@ -56,7 +56,7 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
-.number {
+.num {
   background: #eee;
   color: #333;
   font-size: 6rem;
@@ -69,7 +69,7 @@ h1 {
   transform: translate(-50%, 50%);
 }
 
-.between {
+.btwn {
   font-size: 1.4rem;
   position: absolute;
   top: 2rem;
@@ -109,7 +109,7 @@ h1 {
   background-color: #ccc;
 }
 
-.message {
+.msg {
   margin-bottom: 8rem;
   height: 3rem;
 }
