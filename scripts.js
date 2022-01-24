@@ -27,34 +27,105 @@ const inputElm = document.querySelector('.guess');
 // WHEN '.check' btn clicked
 // IF '.guess' is empty || 0 || NAN
 // '.msg' changes to "must be number greater than 0"
-// && '.num' changes to Emoji
+// && '.num' changes to an Emoji
+
 btnCheck.addEventListener('click', () => {
-//   Number(inputElm.value);
-//     console.log(inputElm.value, typeof Number(inputElm.value), isNaN(inputElm));
-const inputElm = Number(document.querySelector('.guess'));
-console.log(inputElm, inputElm.value, typeof inputElm);
-  if (inputElm === '' || inputElm === 0 || isNaN(inputElm)) {
-    pElmMsg.textContent = '⛔️ must be number greater than 0';
-    pElmNum.textContent = '🎭';
-    function clearNdAutofocus() {
-      inputElm.value = null;
-      inputElm.focus();
-    }
-    setTimeout(clearNdAutofocus, 1000);
-  }
+  /*
+  const inputVal = document.querySelector('.guess').value;
+
+  const resetMyContent = () => {
+    inputElm.focus();
+    inputElm.value = '';
+    const pElmMsg = document.querySelector('.msg');
+    pElmMsg.textContent = 'Start guessing...';
+    pElmNum.textContent = '?';
+  };
+if (isNaN(inputVal) || Number(inputVal) <= 0) {
+  pElmMsg.textContent = '⛔️ must be number greater than 0';
+  pElmNum.textContent = '🎭';
+  setTimeout(resetMyContent, 2000);
+}
+*/
 });
 
-// WHEN you input a num and click '.check' btn
-// a random num generates, and shows up in '.num'
+let score = 20;
+let highScore = 0;
 
-// then
-// IF random num ≠≠ inputted num
-// '.score' goes down one
+btnCheck.addEventListener('click', () => {
+  const resetMyContent = () => {
+    inputElm.focus();
+    inputElm.value = '';
+    const pElmMsg = document.querySelector('.msg');
+    pElmMsg.textContent = 'Start guessing...';
+    pElmNum.textContent = '?';
+  };
 
-// IF random num == inputted num
-// value of that inputted num adds to '.high-score'
+  // WHEN you input a num and click '.check' btn
+  // a random num btwn 1 and 20 generates, and shows up in '.num'
+  const randomNumGenerator = Math.trunc(Math.random() * 5 + 1);
+  pElmNum.textContent = randomNumGenerator;
+
+  const inputVal = document.querySelector('.guess').value;
+  if (isNaN(inputVal) || Number(inputVal) <= 0) {
+    pElmMsg.textContent = '⛔️ must be number greater than 0';
+    pElmNum.textContent = '🎭';
+    setTimeout(resetMyContent, 2000);
+  }
+
+  // then
+  // IF random num ≠≠ inputted num
+  // '.score' goes down one
+  // score value starts at 20
+
+  if (
+    Number(inputElm.value) !== randomNumGenerator &&
+    Number(inputElm.value) !== 0
+  ) {
+    score = score - 1;
+    spanElmScore.textContent = score;
+    setTimeout(resetMyContent, 2000);
+
+    // IF random num == inputted num
+    // value of that inputted num adds to '.high-score'
+  } else if (parseInt(inputElm.value) === randomNumGenerator) {
+    highScore = inputElm.value;
+    spanElmHighScore.textContent = inputElm.value;
+    pElmNum.textContent = 'You are a BALLER!!';
+    pElmMsg.textContent = 'Click the Again Button to Reset';
+
+    // Use DOM and create a special effect on the Body Elm
+    const bodyElm = document.querySelector('body');
+    const styleColorRed = () => {
+      bodyElm.style.backgroundColor = 'red';
+    };
+
+    const styleColorGreen = () => {
+      bodyElm.style.backgroundColor = '#60b347';
+    };
+    const styleColorDefault = () => {
+      bodyElm.style.backgroundColor = '#222';
+    };
+
+    bodyElm.style.backgroundColor = '#60b347';
+    setTimeout(styleColorRed, 500);
+    setTimeout(styleColorGreen, 600);
+    setTimeout(styleColorRed, 700);
+    setTimeout(styleColorGreen, 800);
+    setTimeout(styleColorRed, 900);
+    setTimeout(styleColorGreen, 1000);
+    setTimeout(styleColorRed, 1100);
+    setTimeout(styleColorGreen, 1200);
+    setTimeout(styleColorDefault, 1300);
+  }
+  console.log(Number(inputElm.value), inputElm.value);
+});
 
 // then you should click '.again' btn to reset
+// WHEN 'reset' default everything EXCEPT 'High Score'
+
+btnAgain.addEventListener('click', () => {
+  
+});
 
 // WHEN '.again' btn clicked, '.guess' clears out
 // && '.score' resets to 20
