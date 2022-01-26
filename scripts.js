@@ -29,37 +29,19 @@ const inputElm = document.querySelector('.guess');
 // '.msg' changes to "must be number greater than 0"
 // && '.num' changes to an Emoji
 
-btnCheck.addEventListener('click', () => {
-  /*
-  const inputVal = document.querySelector('.guess').value;
-
-  const resetMyContent = () => {
-    inputElm.focus();
-    inputElm.value = '';
-    const pElmMsg = document.querySelector('.msg');
-    pElmMsg.textContent = 'Start guessing...';
-    pElmNum.textContent = '?';
-  };
-if (isNaN(inputVal) || Number(inputVal) <= 0) {
-  pElmMsg.textContent = '⛔️ must be number greater than 0';
-  pElmNum.textContent = '🎭';
-  setTimeout(resetMyContent, 2000);
-}
-*/
-});
-
 let score = 20;
 let highScore = 0;
+let updatedHighScore = 0;
+
+const resetMyContent = () => {
+  inputElm.focus();
+  inputElm.value = '';
+  const pElmMsg = document.querySelector('.msg');
+  pElmMsg.textContent = 'Start guessing...';
+  pElmNum.textContent = '?';
+};
 
 btnCheck.addEventListener('click', () => {
-  const resetMyContent = () => {
-    inputElm.focus();
-    inputElm.value = '';
-    const pElmMsg = document.querySelector('.msg');
-    pElmMsg.textContent = 'Start guessing...';
-    pElmNum.textContent = '?';
-  };
-
   // WHEN you input a num and click '.check' btn
   // a random num btwn 1 and 20 generates, and shows up in '.num'
   const randomNumGenerator = Math.trunc(Math.random() * 5 + 1);
@@ -87,11 +69,18 @@ btnCheck.addEventListener('click', () => {
 
     // IF random num == inputted num
     // value of that inputted num adds to '.high-score'
+
+    //IF random num == inputted num && > current highScore value
+    // update highScore value if random num == inputted num && > current highScore
   } else if (parseInt(inputElm.value) === randomNumGenerator) {
-    highScore = inputElm.value;
-    spanElmHighScore.textContent = inputElm.value;
+    if (inputElm.value > updatedHighScore) {
+      highScore = inputElm.value;
+      spanElmHighScore.textContent = inputElm.value;
+    }
     pElmNum.textContent = 'You are a BALLER!!';
     pElmMsg.textContent = 'Click the Again Button to Reset';
+    updatedHighScore = inputElm.value;
+    console.log(updatedHighScore);
 
     // Use DOM and create a special effect on the Body Elm
     const bodyElm = document.querySelector('body');
@@ -124,7 +113,9 @@ btnCheck.addEventListener('click', () => {
 // WHEN 'reset' default everything EXCEPT 'High Score'
 
 btnAgain.addEventListener('click', () => {
-  
+  score = 20;
+  spanElmScore.textContent = 20;
+  resetMyContent();
 });
 
 // WHEN '.again' btn clicked, '.guess' clears out
