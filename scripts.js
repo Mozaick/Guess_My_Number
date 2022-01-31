@@ -118,6 +118,17 @@ btnCheck.addEventListener('click', () => {
       pElmMsg.textContent = '🎖🎖🎖 Click the Again Button to Reset Score';
     };
 
+    const colorSetTimeout = () => {
+      setTimeout(styleColorRed, 500);
+      setTimeout(styleColorGreen, 600);
+      setTimeout(styleColorRed, 700);
+      setTimeout(styleColorGreen, 800);
+      setTimeout(styleColorRed, 900);
+      setTimeout(styleColorGreen, 1000);
+      setTimeout(styleColorRed, 1100);
+      setTimeout(styleColorGreen, 1200);
+    };
+
     if (
       inputVal === randomNumGenerator &&
       inputVal > highScore &&
@@ -126,69 +137,75 @@ btnCheck.addEventListener('click', () => {
       highScore = inputVal;
       spanElmHighScore.textContent = inputVal;
       updatedHighScore = inputVal;
-
       setTimeout(styleBreakHighScore, 500);
-
-      setTimeout(styleColorRed, 500);
-      setTimeout(styleColorGreen, 600);
-      setTimeout(styleColorRed, 700);
-      setTimeout(styleColorGreen, 800);
-      setTimeout(styleColorRed, 900);
-      setTimeout(styleColorGreen, 1000);
-      setTimeout(styleColorRed, 1100);
-      setTimeout(styleColorGreen, 1200);
-
+      colorSetTimeout();
       setTimeout(styleColorDefault, 1300);
     } else if (inputVal === randomNumGenerator && inputVal === numMax) {
       highScore = inputVal;
       spanElmHighScore.textContent = inputVal;
       updatedHighScore = inputVal;
       setTimeout(styleReachNumMax, 500);
-
-      setTimeout(styleColorRed, 500);
-      setTimeout(styleColorGreen, 600);
-      setTimeout(styleColorRed, 700);
-      setTimeout(styleColorGreen, 800);
-      setTimeout(styleColorRed, 900);
-      setTimeout(styleColorGreen, 1000);
-      setTimeout(styleColorRed, 1100);
-      setTimeout(styleColorGreen, 1200);
-    } else if (inputVal === randomNumGenerator && inputVal < updatedHighScore) {
+      colorSetTimeout();
+    } else if (
+      inputVal === randomNumGenerator &&
+      inputVal <= updatedHighScore
+    ) {
       bodyElm.style.backgroundColor = '#60b347';
       setTimeout(styleGuessingCorrectNum, 500);
       setTimeout(styleColorDefault, 700);
     }
   }
-  console.log(inputVal, typeof inputVal, inputElm.value);
 
-  function oneLastTryMsg() {
-    pElmMsg.textContent = 'One try left..Good Luck!!';
+
+  const oneLastTryMsg = () => {
+    pElmMsg.textContent = 'One try left .. Good Luck!!';
     pElmNum.textContent = '🤞🤞';
-  }
+  };
+  const OneLastLuckyTryMsg = () => {
+    pElmMsg.textContent = 'Damn!! You are a Goat!!';
+    pElmNum.textContent = '🤩🤩';
+  };
 
-  if (score === 1) {
-    setTimeout(oneLastTryMsg, 500);
-    setTimeout(oneLastTryMsg, 900);
-    setTimeout(oneLastTryMsg, 900);
-    setTimeout(oneLastTryMsg, 500);
-  }
-  function gameOverMsg() {
+  const gameOverMsg = () => {
     btnAgain.textContent = 'Restart';
     pElmMsg.textContent = 'Game Over .. Hit Restart and try again';
     pElmNum.textContent = '🤯🤬🤬👾';
-  }
-  if (score === 0 && inputVal !== randomNumGenerator) {
+  };
+
+  if (score === 1) {
+    // try to default '?' to '.num' first
+    setTimeout(oneLastTryMsg, 500);
+    setTimeout(oneLastTryMsg, 900);
+    setTimeout(oneLastTryMsg, 900);
+    setTimeout(oneLastTryMsg, 500);
+  } else if (score === 1 && inputVal === randomNumGenerator) {
+    setTimeout(OneLastLuckyTryMsg, 500);
+    setTimeout(OneLastLuckyTryMsg, 900);
+    setTimeout(OneLastLuckyTryMsg, 900);
+    setTimeout(OneLastLuckyTryMsg, 500);
+  } else if (score === 0 && inputVal !== randomNumGenerator) {
+    // try to default '?' to '.num' first
     setTimeout(gameOverMsg, 500);
     setTimeout(gameOverMsg, 900);
     setTimeout(gameOverMsg, 900);
     setTimeout(gameOverMsg, 500);
   }
+
+  if (score <= minusOneBeforeMax && score >= 15)
+    spanElmScore.style.color = 'green';
+  if (score <= 14 && score > 8) spanElmScore.style.color = 'gold';
+  if (score <= 7 && score > 4) spanElmScore.style.color = 'orange';
+  if (score <= 3 && score > 0) spanElmScore.style.color = 'red';
 });
 
 // then you should click '.again' btn to reset
 // WHEN 'reset' default everything EXCEPT 'High Score'
 
 btnAgain.addEventListener('click', () => {
+  resetMyContent();
+  score = 21;
+  spanElmScore.textContent = score;
+
   if (btnAgain.textContent === 'Restart') {
     console.log(score, highScore, updatedHighScore, numMax, minusOneBeforeMax);
     location.reload();
@@ -202,12 +219,3 @@ btnAgain.addEventListener('click', () => {
 // IF inputted num == random num
 // && inputted num > current '.high-score' value
 // ELSE WHEN '.again' btn clicked '.high-score' == current
-function scoreColorSwitch() {
-  // locate score && locate 21
-  // if score >= 8 && score <=14
-  // style score && '21' with orange
-  // if score >= 15 && score <=18
-  // style score && '21' with pink
-  // if score = 19 || 20
-  // style score && '21' with red
-}
