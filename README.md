@@ -6,6 +6,6 @@ Who's got the luckiest guess?! 🃏
 Who's winning the highest score!! 🤯
 </br>
 </br>
-Do you want to give it a run? Check the link below ↓
+Want to give it a run? Check the link below ↓
 </br>
 https://guess-my-numbr.herokuapp.com
