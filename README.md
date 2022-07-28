@@ -1,2 +1,7 @@
 # Guess_My_Number
-Compete with your mates and family members 💪 and see who is got the luckiest guess?!, who is winning the highest score!! 🤯
+Compete with your mates and family members 💪 
+</br>
+Who is got the luckiest guess?! 🃏
+</br>
+who is winning the highest score!! 🤯
+</br>
