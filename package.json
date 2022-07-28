@@ -2,7 +2,7 @@
   "name": "guess_my_number",
   "version": "1.0.0",
   "description": "guess game",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
