@@ -8,4 +8,4 @@ Who's winning the highest score!! 🤯
 </br>
 Want to give it a run? Check the link below ↓
 </br>
-https://guess-my-numbr.herokuapp.com
+https://guess-my-number-2021.web.app
