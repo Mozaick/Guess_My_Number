@@ -51,3 +51,11 @@ node_modules/
 # vscode files
 ######################
 *.vscode/
+# parcel files
+######################
+.parcel-cache
+dist
+public
+# firebase files
+######################
+.firebase
