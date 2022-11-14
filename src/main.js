@@ -15,6 +15,8 @@ const spanElmHighScore = document.querySelector('.high-score');
 const inputElm = document.querySelector('.guess');
 console.log(inputElm.value, typeof inputElm.value);
 
+const headerMsg = document.querySelector('.header');
+
 let score = 21;
 let highScore = 0;
 let updatedHighScore = 0;
@@ -75,6 +77,9 @@ btnCheck.addEventListener('click', () => {
 
     const styleBreakHighScore = () => {
       pElmNum.textContent = 'You are a BALLER!!';
+      pElmNum.style.fontSize = '3rem';
+      pElmNum.style.minWidth = '5rem';
+      pElmMsg.textContent = '🎖 New HighScore 🎖';
       pElmMsg.textContent =
         '🎖 New HighScore .. Click the Again Button to Reset Score';
     };
@@ -132,8 +137,10 @@ btnCheck.addEventListener('click', () => {
 
   const gameOverMsg = () => {
     btnAgain.textContent = 'Restart';
+    // margin-top: 44px;
+    pElmMsg.style.marginTop = '44px';
     pElmMsg.textContent = 'Game Over .. Hit Restart and try again';
-    pElmNum.textContent = '🤯🤬🤬👾';
+    pElmNum.textContent = '🤯🤬👾';
   };
 
   if (score === 1) {
@@ -149,6 +156,9 @@ btnCheck.addEventListener('click', () => {
     setTimeout(OneLastLuckyTryMsg, 500);
   } else if (score === 0 && inputVal !== randomNumGenerator) {
     // try to default '?' to '.num' first
+    // make check btn disappear
+    btnCheck.style.display = 'none';
+
     setTimeout(gameOverMsg, 500);
     setTimeout(gameOverMsg, 900);
     setTimeout(gameOverMsg, 900);
