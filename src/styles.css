@@ -117,3 +117,64 @@ h1 {
 .label-score {
   margin-bottom: 2rem;
 }
+
+@media only screen and (max-width: 600px) {
+  * {
+    font-size: 0.5em;
+    line-height: 1.5;
+  }
+  h1 {
+    font-size: 6em;
+  }
+  .btwn {
+    font-size: 1em;
+  }
+  section .msg {
+    margin-right: 40px;
+  }
+
+  .guess {
+    padding: unset;
+    width: 16rem;
+    height: 10rem;
+  }
+  .btwn {
+    font-size: 1.1rem;
+    margin-right: -10px;
+    margin-top: 14px;
+  }
+
+  .again {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+}
+@media only screen and (max-width: 300px) {
+  * {
+    line-height: 1.5;
+  }
+  .again,
+  .check {
+    padding: unset;
+    padding: 20px 10px;
+    font-size: 1.5rem;
+  }
+  .guess {
+    width: 2.3em;
+  }
+
+  .num {
+    font-size: 3rem;
+    min-width: 5rem;
+  }
+  p {
+    padding: unset;
+    padding: 10px 0 0px 10px;
+  }
+  .btwn {
+    font-size: 1.1rem;
+    margin-right: -10px;
+    margin-top: 5px;
+  }
+}
